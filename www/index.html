@@ -7,19 +7,31 @@
        /** Called when phonegap javascript is loaded */
 		function onDeviceReady(){
 		    var options = { frequency: 1000 };  // Update every 1 seconds
-			navigator.accelerometer.watchAcceleration(onSuccess, onError,options);
+			navigator.accelerometer.watchAcceleration(onMotionSuccess, onMotionError,options);
+			navigator.compass.watchHeading(onKompassSuccess, onKompassError, options);
 		}
 
-		function onSuccess(acceleration) {
+		function onMotionSuccess(acceleration) {
 		    document.getElementById('x').innerHTML = acceleration.x;
 		    document.getElementById('y').innerHTML = acceleration.y;
 		    document.getElementById('z').innerHTML = acceleration.z;
 		    document.getElementById('timestamp').innerHTML = acceleration.timestamp; 
     	}
 
-	    function onError(error) {
+	    function onMotionError(error) {
         	alert('code: '    + error.code    + '\n' +
 					'message: ' + error.message + '\n');
+		}
+		function onKompassSuccess(heading) {
+		    var image = document.getElementById('compass');
+		    var headingDiv = document.getElementById('compassHeading');
+		    headingDiv.innerHTML=heading.magneticHeading;
+		    var reverseHeading = 360 - heading.magneticHeading;
+		    image.style.webkitTransform = "rotate("+reverseHeading+"deg)";
+    	}
+
+	    function onKompassError(error) {
+        	alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
 		}
 	 
        /** Called when browser load this page*/
@@ -36,6 +48,10 @@
       <tr>  <td>Z</td>           <td id="z"></td>            <tr>
       <tr>  <td>Timestamp</td>   <td id="timestamp"></td>    <tr>
     </table>
-    </ul>
+    <h1>Compass</h1>
+    <table><tr><td>Compass Heading</td><td> <div id="compassHeading">....</div></td><td>Degrees</td></tr></table>
+    
+    <img id="compass" src="pic/compass.png" 
+    	style="width:400px;height:400px;margin-left:auto;margin-right:auto;auto;display:block"></img>
   </body>
 </html>
