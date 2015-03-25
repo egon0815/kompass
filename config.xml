@@ -13,4 +13,5 @@ Andreas Herburger
 </author>
 
 <gap:plugin name="org.apache.cordova.device-motion" version="0.2.10" />
+<gap:plugin name="org.apache.cordova.device-orientation" version="0.3.9" />
 </widget>
