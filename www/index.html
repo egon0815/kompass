@@ -25,7 +25,7 @@
 		function onKompassSuccess(heading) {
 		    var image = document.getElementById('compass');
 		    var headingDiv = document.getElementById('compassHeading');
-		    headingDiv.innerHTML=heading.magneticHeading;
+		    headingDiv.innerHTML=Math.round(heading.magneticHeading);
 		    var reverseHeading = 360 - heading.magneticHeading;
 		    image.style.webkitTransform = "rotate("+reverseHeading+"deg)";
     	}
