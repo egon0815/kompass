@@ -6,7 +6,7 @@ id = "name.herburger.kompass"
 version = "1.0.0">
 <name>Kompass</name>
 <description>
-Hello World sample application that responds to the deviceready event.
+Einfacher Kompass mit Beschleunigungsmesser
 </description>
 <author href="http://www.herburger.name" email="andreas@bla.de">
 Andreas Herburger
